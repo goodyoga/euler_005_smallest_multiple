@@ -6,25 +6,37 @@
 #include <unistd.h>   /* getopt */
 
 void usage(void);
-char *prog;
-int check(unsigned long long int cur);
+/**
+ * @file
+ * @addtogroup EULER_005  Euler_005_smallest_multiple
+ * @{
+ */
 
-#define BUFF_SIZE   128
-
-int check(unsigned long long int cur)
-{
-    char buff[BUFF_SIZE], buff2[BUFF_SIZE];
-    size_t len;
-    unsigned int i;
-
-    snprintf(buff, BUFF_SIZE, "%llu", cur);
-    len = strlen(buff);
-    for ( i = 0 ; i < len ; i++ )
-        buff2[i] = buff[len - i - 1];
-
-    return (0 == strncmp(buff, buff2, len));
-}
-
+/**
+ * @brief main of smallest multiple
+ * 
+ * @param argc
+ * @param argv
+ * @return always SUCCESS
+ * 
+ * @startuml{euler_005_smallest_multiple.png}
+ * 
+ * participant defaults
+ * 
+ * defaults->defaults: all = 0
+ * defaults->defaults: max = 20
+ * 
+ * opt h option
+ *     note over defaults: show help.
+ * else n option
+ *     note over defaults: max = argv
+ * else a option
+ *     note over defaults: all = 1
+ * end opt
+ * 
+ * k->k:
+ * @enduml
+ */
 int main(int argc, char **argv)
 {
     unsigned long long int max;
@@ -32,16 +44,15 @@ int main(int argc, char **argv)
     int opt, all = 0;
     char *p;
     
-    prog = argv[0];
     max = 20;
 
     while ( -1 != (opt = getopt(argc, argv, "ahn:")) )
     {
         if('h' == opt)
-	{
+        {
             usage();
             exit(EXIT_SUCCESS);
-	}
+        }
         else if ('n' == opt)
         {
             max = strtoull(optarg, &p, 0);
@@ -79,9 +90,13 @@ int main(int argc, char **argv)
     printf("answer: %llu\n", cur);
     return EXIT_SUCCESS;
 }
+/**
+ * @}
+ */
 
-
-
+/**
+ * usage
+ */
 void usage(void)
 {
     printf("    http://projecteuler.net/problem=5\n");
