@@ -5,9 +5,8 @@
 #include <string.h>   /* strlen  */
 #include <unistd.h>   /* getopt */
 
-void usage(void);
 /**
- * @file
+ * @file main_005.c
  * @addtogroup EULER_005  Euler_005_smallest_multiple
  * @{
  */
@@ -16,7 +15,7 @@ void usage(void);
  * @brief main of smallest multiple
  * 
  * @param argc
- * @param argv
+ * @param argv -h shows help\n-n=&lt;number&gt; sets number.-a show all debug printf().
  * @return always SUCCESS
  * 
  * @startuml{euler_005_smallest_multiple.png}
@@ -37,6 +36,27 @@ void usage(void);
  * k->k:
  * @enduml
  */
+int main(int argc, char **argv);
+
+
+/**
+ * @brief shows usage
+ */
+void usage(void);
+
+/**
+ * @}
+ */
+
+
+
+
+/***********************************
+ * Implementation
+ ***********************************/
+
+
+
 int main(int argc, char **argv)
 {
     unsigned long long int max;
@@ -90,13 +110,9 @@ int main(int argc, char **argv)
     printf("answer: %llu\n", cur);
     return EXIT_SUCCESS;
 }
-/**
- * @}
- */
 
-/**
- * usage
- */
+
+
 void usage(void)
 {
     printf("    http://projecteuler.net/problem=5\n");
